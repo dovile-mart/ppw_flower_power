@@ -2,7 +2,6 @@ import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 
-
 function LoginForm() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -11,23 +10,22 @@ function LoginForm() {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log("User logged in: " + user.email);
-
-      });
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log("User logged in: " + user.email);
+        });
     } catch (error) {
       console.error('Could not log in, error: ', error);
-      alert('Could not log in, check email and password.')
+      alert('Could not log in, check email and password.');
     }
-  }
+  };
 
   return (
     <div className="card">
-      <h2>Firebase authentication</h2>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label htmlFor="email">Email: </label>
+      <h3>Sign in to your account</h3>
+      <form onSubmit={handleLogin} className="justify-content-between align-items-center">
+        <div >
+          <label htmlFor="email">Email:</label>
           <input
             type="email"
             id="email"
@@ -41,12 +39,13 @@ function LoginForm() {
           <input
             type="password"
             id="password"
+            required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
+            
           />
         </div>
-        <button type="submit">Log in</button>
+        <button type="submit">Sign in</button>
       </form>
     </div>
   );
