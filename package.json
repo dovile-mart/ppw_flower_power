@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://dovile-mart.github.io/ppw_flower_power",
+  "homepage": "https://dovile-mart.github.io/ppw_flower_power/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
