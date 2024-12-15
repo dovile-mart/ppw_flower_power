@@ -19,9 +19,8 @@ function App() {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
       if (user) {
-        // Get the user's UID directly from the authenticated user object
         const userId = user.uid;
-        console.log("User ID:", userId); // Display the UID in the console
+        console.log("User ID:", userId);
         fetchDataFromFirestore(userId);
       }
     });
