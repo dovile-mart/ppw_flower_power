@@ -1,5 +1,5 @@
-import { useState } from "react";
-import VITE_API_KEY from "../config/token";
+import { useEffect, useState } from "react";
+import API_TOKEN from "../config/token";
 
 interface Species {
     id: number;
@@ -21,12 +21,12 @@ function SearchPlant() {
     const [allPlants, setAllPlants] = useState<Species[]>([]);
     const [selectedFamily, setSelectedFamily] = useState<string>('');
     const [isLoading, setIsLoading] = useState<boolean>(false);
-
+    const API_URL = 'https://trefle.io/api/v1/plants?token='
     
     const fetchPlantsFromApi = async () => {
         setIsLoading(true);
         try {
-            const response = await fetch(`https://trefle.io/api/v1/plants?token=${VITE_API_KEY}`);
+            const response = await fetch(`${API_URL}${API_TOKEN}`);
             if (response.ok) {
                 const jsonData: ApiResponse = await response.json();
                 
@@ -59,7 +59,7 @@ function SearchPlant() {
         setIsLoading(true);
         try {
             console.log('selectedFamily: ',selectedFamily)
-            const response = await fetch(`https://trefle.io/api/v1/plants?token=${VITE_API_KEY}&filter%5Bfamily_name%5D=${selectedFamily}`);
+            const response = await fetch(`${API_URL}${API_TOKEN}&filter%5Bfamily_name%5D=${selectedFamily}`);
            if (response.ok) {
                 const jsonData: ApiResponse = await response.json();
                 setAllPlants(jsonData.data);
@@ -73,14 +73,13 @@ function SearchPlant() {
         }
     };
 
-    useState(() => {
+    useEffect(() => {
         fetchPlantsFromApi();
     }, []);
 
     return (
         <div className='card'>
             <h3 className="mb-2">Plants data from Trefle</h3>
-            
             <select value={selectedFamily} onChange={(e) => setSelectedFamily(e.target.value)}>
                 <option value="">Select a family</option>
                 {family.map((item, index) => (
