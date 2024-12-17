@@ -78,8 +78,8 @@ function SearchPlant() {
     }, []);
 
     return (
-        <div>
-            <h3>Plants data from Trefle</h3>
+        <div className='card'>
+            <h3 className="mb-2">Plants data from Trefle</h3>
             
             <select value={selectedFamily} onChange={(e) => setSelectedFamily(e.target.value)}>
                 <option value="">Select a family</option>
@@ -94,7 +94,7 @@ function SearchPlant() {
                 {isLoading ? 'Loading..' : 'Fetch plants by family'}
             </button>
 
-            <ul>
+            <ul  className="list-group">
                 {allPlants.map((item) => (
                     <li key={item.id}>
                         {item.scientific_name} - {item.family}
