@@ -59,7 +59,7 @@ function SearchPlant() {
         setIsLoading(true);
         try {
             console.log('selectedFamily: ',selectedFamily)
-            const response = await fetch(`https://trefle.io/api/v1/plants?token=oyCsTKrkhixnUaOZc0kLOiYqaYxSNVzfJrho2516Vk8&filter%5Bfamily_name%5D=${selectedFamily}`);
+            const response = await fetch(`https://trefle.io/api/v1/plants?token=${VITE_API_KEY}&filter%5Bfamily_name%5D=${selectedFamily}`);
            if (response.ok) {
                 const jsonData: ApiResponse = await response.json();
                 setAllPlants(jsonData.data);
