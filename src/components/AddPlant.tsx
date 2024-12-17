@@ -42,7 +42,7 @@ function AddPlant({ userId, onPlantAdded }: AddPlantProps) {
   };
 
   return (
-    <div>
+    <div className='card'>
       <h3>Add a new plant</h3>
       <input
         type='text'
