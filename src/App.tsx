@@ -5,6 +5,7 @@ import { onAuthStateChanged, signOut} from 'firebase/auth';
 import { auth, db } from './firebaseConfig';
 import LoginForm from './components/LoginForm';
 import AddPlant from './components/AddPlant';
+import SearchPlant from './components/SearchPlant';
 
 interface Plant {
   name: string;
@@ -75,7 +76,8 @@ function App() {
               </li>
               ))}
             </ul>
-          </div>
+            </div>
+            <SearchPlant/>
         </div>
       )}
     </div>
