@@ -6,6 +6,14 @@ Harjoitustyössä käyttäjä voi lisätä kasveja ja määrittää niiden kaste
 
 [Linkki projektin repositorioon](https://github.com/dovile-mart/ppw_flower_power)
 
+## Kuvakaappaukset
+![sign-in](https://github.com/user-attachments/assets/bf50092b-00bd-43dc-84e6-f581ddee0b20)
+
+![add-plant & plantlist](https://github.com/user-attachments/assets/e881648f-2c3e-47f7-b0ce-dda40072c98e)
+
+![plant-data-from-trefle](https://github.com/user-attachments/assets/95b25128-09ad-43af-a2f0-1b66ded93fcc)
+
+
 ## Responsiivisuus
 Sivusto toimii erinomaisesti eri kokoisilla näytöillä (desktop, tablet, mobiili). Toimivuus on testattu sekä Google Chromen kehittäjätyökalulla että fyysisillä laitteilla. Mobiililaitteilla kaikki toimii suunnitellusti sekä vaaka- että pystysuunnassa.
 
