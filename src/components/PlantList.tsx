@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebaseConfig";
-
+import { Box, Divider, List, ListItem, Typography } from "@mui/material";
 interface Plant {
   name: string;
   water: number;
@@ -38,25 +38,27 @@ const PlantList: React.FC<PlantListProps> = ({ userId }) => {
     fetchDataFromFirestore();
   }, [userId]);
 
-  return (
-    <div className="card">
-      <h3 className="mb-2">All your plants:</h3>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <ul className="list-group">
-          {plants.map((item, index) => (
-            <li
-              key={index}
-              className="list-group-item d-flex justify-content-between align-items-center"
-            >
-              {item.name}, watering freq. {item.water} days
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
+    return (
+        <Box sx={{ padding: 2, marginTop: 1 }}>
+            <Typography variant="h5" sx={{ marginBottom: 3 }}>All your plants:</Typography>
+            {isLoading ? (
+                <Typography>Loading...</Typography>
+            ) : (
+                    <Box>
+                        <List>
+                            {plants.map((item, index) => (
+                                <div key={index}>
+                                    <ListItem>
+                                        {item.name}, watering freq. {item.water} days
+                                    </ListItem>
+                                    <Divider sx={{ borderBottomWidth: 1, borderColor: 'gray' }} />
+                                </div>
+                            ))}
+                        </List>
+                </Box>
+            )}
+        </Box>
+    );
 };
 
 export default PlantList;

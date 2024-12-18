@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseConfig";
+import Button from '@mui/material/Button';
+import FormControl from '@mui/material/FormControl';
+import { InputLabel, Input, Box, Typography } from "@mui/material";
 
 function LoginForm() {
   const [email, setEmail] = useState<string>("");
@@ -21,33 +24,35 @@ function LoginForm() {
   };
 
   return (
-    <div className="card">
-      <h3>Sign in to your account</h3>
-      <form onSubmit={handleLogin} className="justify-content-between align-items-center">
-        <div >
-          <label htmlFor="email">Email:</label>
-          <input
+    <Box>
+      <Typography variant="h4">Sign in to your account</Typography>
+      <FormControl margin="normal" onSubmit={handleLogin} className="justify-content-between align-items-center">
+          <InputLabel htmlFor="email">Email:</InputLabel>
+          <Input
             type="email"
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </div>
-        <div>
-          <label htmlFor="password">Password: </label>
-          <input
+        <FormControl margin="normal">
+          <InputLabel htmlFor="password">Password: </InputLabel>
+          <Input
             type="password"
             id="password"
-            required
+            
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            
+            required
           />
-        </div>
-        <button type="submit">Sign in</button>
-      </form>
-    </div>
+        </FormControl>
+        <Button
+          variant="contained"
+          onClick={handleLogin}
+          type="submit"
+        >Sign in</Button>
+      </FormControl>
+    </Box>
   );
 }
 

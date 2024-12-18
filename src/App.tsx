@@ -6,6 +6,8 @@ import LoginForm from "./components/LoginForm";
 import AddPlant from "./components/AddPlant";
 import SearchPlant from "./components/SearchPlant";
 import PlantList from "./components/PlantList";
+import Paper from "@mui/material/Paper";
+import { Box, Button, Typography, Divider } from "@mui/material";
 
 function App() {
   const [user, setUser] = useState<any>(null);
@@ -28,24 +30,29 @@ function App() {
   };
 
   return (
-    <div className="container mt-4">
+    <Paper className="container mt-4">
       {!user ? (
         <LoginForm />
       ) : (
-        <div>
-          <h2 className="mb-2">Welcome, {user.email}</h2>
-          <button onClick={handleLogout} className="mb-2">
-            Logout
-          </button>
-
-          <AddPlant userId={user.uid} onPlantAdded={() => {}} />
-
-          <PlantList userId={user.uid} />
-
-          <SearchPlant />
-        </div>
+        <Box>
+          <Typography variant="h4">Welcome, {user.email}</Typography>
+            <Button
+              onClick={handleLogout}
+              variant="contained"
+              sx={{ display: "inline", backgroundColor: "secondary.main", position:"absolute", top:10, right:50 }}
+            >Logout
+            </Button>
+            <Divider sx={{ borderBottomWidth: 2, borderColor: 'primary.main' }} />
+            <AddPlant userId={user.uid} onPlantAdded={() => { }} />
+           
+            <Divider sx={{ borderBottomWidth: 2, borderColor: 'primary.main' }} />
+            <PlantList userId={user.uid} />
+           
+            <Divider sx={{ borderBottomWidth: 2, borderColor: 'primary.main' }} />
+            <SearchPlant />
+        </Box>
       )}
-    </div>
+    </Paper>
   );
 }
 

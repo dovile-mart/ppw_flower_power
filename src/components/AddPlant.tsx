@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
-
+import FormControl from '@mui/material/FormControl';
+import { Input, InputLabel, Box, Button, TextField, Typography } from "@mui/material";
+import CheckIcon from "@mui/icons-material/Check";
 interface AddPlantProps {
   userId: string;
   onPlantAdded: () => void;
@@ -10,14 +12,6 @@ interface AddPlantProps {
 function AddPlant({ userId, onPlantAdded }: AddPlantProps) {
   const [plantName, setPlantName] = useState('');
   const [waterFreq, setWaterFreq] = useState(0);
-
-  const handlePlantName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPlantName(e.target.value);
-  };
-
-  const handleWaterFrequency = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setWaterFreq(parseFloat(e.target.value) || 0);
-  };
 
   const addPlantToFirestore = async () => {
     if (!plantName || waterFreq <= 0) {
@@ -42,22 +36,20 @@ function AddPlant({ userId, onPlantAdded }: AddPlantProps) {
   };
 
   return (
-    <div className='card'>
-      <h3>Add a new plant</h3>
-      <input
-        type='text'
-        value={plantName}
-        onChange={handlePlantName}
-        placeholder="Plant name"
-      />
-      <input
-        type='number'
-        value={waterFreq}
-        onChange={handleWaterFrequency}
-        placeholder="Watering frequency (days)"
-      />
-      <button onClick={addPlantToFirestore}>Add Plant</button>
-    </div>
+    <Box sx={{padding:2, marginTop:1}}>
+      <FormControl margin='normal'>
+        <Typography variant="h5" sx={{ marginBottom: 3 }}>Add a new plant</Typography>
+        <TextField id="outlined-basic" label="Plant name" variant="outlined" onChange={(e) => setPlantName(e.target.value)} sx={{ marginBottom: 2 }} />
+        <TextField id="outlined-basic" label="Watering frequency (days)" variant="outlined" onChange={(e) => setWaterFreq(parseFloat(e.target.value) || 0)} />
+        <Button
+          onClick={addPlantToFirestore}
+          variant="contained"
+          sx={{marginTop:3}}
+        ><CheckIcon />
+          Add Plant
+        </Button>
+      </FormControl>
+    </Box>
   );
 }
 
