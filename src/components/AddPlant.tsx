@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 import FormControl from '@mui/material/FormControl';
-import { Input, InputLabel, Box, Button, TextField, Typography } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 interface AddPlantProps {
   userId: string;

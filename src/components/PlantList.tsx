@@ -19,7 +19,9 @@ const PlantList: React.FC<PlantListProps> = ({ userId }) => {
     try {
       console.log("Fetching data...");
       const userPlantsRef = collection(db, "users", userId, "Plants");
+      console.log(userPlantsRef.path); // users/xxxx/Plants
       const querySnapshot = await getDocs(userPlantsRef);
+      console.log(querySnapshot);
       const fetchedData: Plant[] = [];
       querySnapshot.forEach((doc) => {
         const docData = doc.data() as Plant;
